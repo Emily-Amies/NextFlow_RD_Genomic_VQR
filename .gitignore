@@ -1,0 +1,6 @@
+.nextflow
+data/
+*log*
+results/
+work/
+*.dot

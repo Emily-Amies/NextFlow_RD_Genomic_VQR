@@ -1,5 +1,5 @@
 /*
- * Sort the BAM files and filter with samtools view
+ * Convert SAM/BAM to filtered, sorted BAM (MAPQ >= 30)
  */
 process sortBam {
 
@@ -8,27 +8,25 @@ process sortBam {
     } else if (params.platform == 'cloud') {
         label 'process_medium'
     }
+
     container 'variantvalidator/indexgenome:1.1.0'
 
-    tag "$bamFile"
+    tag "$sample_id"
 
     input:
-    tuple val(sample_id), file(bamFile)
+    tuple val(sample_id), path(alnFile)
 
     output:
-    tuple val(sample_id), file("${bamFile.baseName}_filtered_sorted.bam")
+    tuple val(sample_id), path("${sample_id}_filtered_sorted.bam")
 
     script:
     """
-    echo "Running Sort and Filter Bam"
+    echo "Running Sort and Filter (MAPQ >= 30) for ${sample_id}"
+    echo "Input: ${alnFile}"
 
-    outputBam="\$(basename ${bamFile} .bam)_filtered_sorted.bam"
+    # -S lets samtools auto-detect SAM/BAM; -h keeps headers; -q filters MAPQ
+    samtools view -h -q 30 -b ${alnFile} | samtools sort -o ${sample_id}_filtered_sorted.bam -
 
-    # Use samtools to filter the BAM file with a minimum MAPQ score of 30, and then sort it
-    samtools view -h -q 30 -b ${bamFile} | samtools sort -o \${outputBam} -
-
-    echo "\${outputBam}"
-
-    echo "BAM Sorting and Filtering complete"
+    echo "BAM Sorting and Filtering complete for ${sample_id}"
     """
 }
