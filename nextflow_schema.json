@@ -81,6 +81,18 @@
                     "description": "Flag to indicate if identity analysis should be performed",
                     "default": false
                 }
+                    "trimming": {
+                    "type": "string",
+                    "description": "Which trimming tool to use (trim-galore, trimmomatic, fastp, none)",
+                    "default": "none",
+                    "enum": ["trim-galore", "trimmomatic", "fastp", "none"]
+                },
+                    "runMode": {
+                    "type": "string",
+                    "description": "Mode to run in (trim, align, full)",
+                    "default": "trim",
+                    "enum": ["trim", "align", "full"]
+                }
             },
             "required": [
                 "platform",
