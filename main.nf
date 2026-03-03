@@ -112,7 +112,7 @@ workflow {
     } else if (params.trimming == 'trimmomatic') {
         adapter_pe_ch = Channel.fromPath(params.adapter_pe)
         adapter_se_ch = Channel.fromPath(params.adapter_se)
-        trimTrimmomatic(read_pairs_ch, adapter_pe_ch, adapter_se_ch)
+        trim_ch = trimTrimmomatic(read_pairs_ch, adapter_pe_ch, adapter_se_ch)
     } else if (params.trimming == 'fastp') {
         trim_ch = trimFastp(read_pairs_ch)
     } else if (params.trimming == 'none') {
