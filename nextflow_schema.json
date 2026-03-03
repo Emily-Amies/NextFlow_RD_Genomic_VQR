@@ -92,6 +92,16 @@
                     "description": "Mode to run in (trim, align, full)",
                     "default": "trim",
                     "enum": ["trim", "align", "full"]
+                },
+                    "adapter_pe": {
+                    "type": "string",
+                    "description": "Paired-end adapters",
+                    "format": "directory-path"
+                },
+                    "adapter-se": {
+                    "type": "string",
+                    "description": "Single-end adapters",
+                    "format": "directory-path"
                 }
             },
             "required": [
