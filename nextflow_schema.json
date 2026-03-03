@@ -98,7 +98,7 @@
                     "description": "Paired-end adapters",
                     "format": "directory-path"
                 },
-                    "adapter-se": {
+                    "adapter_se": {
                     "type": "string",
                     "description": "Single-end adapters",
                     "format": "directory-path"
