@@ -80,7 +80,7 @@
                     "type": "boolean",
                     "description": "Flag to indicate if identity analysis should be performed",
                     "default": false
-                }
+                },
                     "trimming": {
                     "type": "string",
                     "description": "Which trimming tool to use (trim-galore, trimmomatic, fastp, none)",
