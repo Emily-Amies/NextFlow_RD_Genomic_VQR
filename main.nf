@@ -110,6 +110,8 @@ workflow {
     if (params.trimming == 'trim-galore') {
         trim_ch = trimTrimGalore(read_pairs_ch)
     } else if (params.trimming == 'trimmomatic') {
+        adapter_pe_ch = Channel.fromPath(params.adapter_pe)
+        adapter_se_ch = Channel.fromPath(params.adapter_se)
         trim_ch = trimTrimmomatic(read_pairs_ch)
     } else if (params.trimming == 'fastp') {
         trim_ch = trimFastp(read_pairs_ch)
