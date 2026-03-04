@@ -37,3 +37,4 @@ process trimFastp {
     
           echo "fastp complete for ${sample_id}"
         """
+}
