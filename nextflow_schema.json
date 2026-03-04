@@ -102,6 +102,11 @@
                     "type": "string",
                     "description": "Single-end adapters",
                     "format": "file-path"
+                },
+                    "fastp_sliding_window": {
+                    "type": "boolean",
+                    "description": "Run fastp in sliding window mode",
+                    "default": false
                 }
             },
             "required": [
