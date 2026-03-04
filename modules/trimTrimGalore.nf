@@ -14,14 +14,23 @@ process trimTrimGalore {
 
     script:
     def is_paired = reads.size() == 2
-
     if (is_paired) """
-        trim_galore --paired --gzip ${reads[0]} ${reads[1]}
-        
+        trim_galore \
+            --paired \
+            --quality 20 \
+            --length 20 \
+            --gzip \
+            ${reads[0]} ${reads[1]}
+    
         mv *_val_1.fq.gz ${sample_id}_R1.trim.fq.gz
         mv *_val_2.fq.gz ${sample_id}_R2.trim.fq.gz
     """ else """
-        trim_galore --gzip ${reads[0]}
+        trim_galore \
+            --quality 20 \
+            --length 20 \
+            --gzip \
+            ${reads[0]}
+    
         # Typical output is *_trimmed.fq.gz for SE
         mv *_trimmed.fq.gz ${sample_id}.trim.fq.gz
     """
